@@ -1,0 +1,65 @@
+[
+  {
+    "file": "assets/images/coastal-rocks.jpg",
+    "url": "https://static.wixstatic.com/media/c289f7_2e9859c7671548528174534206ed5f7a~mv2.jpg"
+  },
+  {
+    "file": "assets/images/google-play-qr.png",
+    "url": "https://static.wixstatic.com/media/c289f7_ae65da2770eb4625b46abcc8ac91eb3a~mv2.png"
+  },
+  {
+    "file": "assets/images/fishing-boats.jpg",
+    "url": "https://static.wixstatic.com/media/c289f7_fc0dddfa8ba54e3a891be11d942c6754~mv2.jpg"
+  },
+  {
+    "file": "assets/images/fishing-passion.png",
+    "url": "https://static.wixstatic.com/media/c289f7_20f2443efbb44971b15a871d613139dd~mv2.png"
+  },
+  {
+    "file": "assets/images/organize-gear.png",
+    "url": "https://static.wixstatic.com/media/c289f7_ee8df5a747cd42efa7628a3a8723802f~mv2.png"
+  },
+  {
+    "file": "assets/images/fishing-spots.png",
+    "url": "https://static.wixstatic.com/media/c289f7_c7eba8ffabcb4c5089ea0ba8ce608018~mv2.png"
+  },
+  {
+    "file": "assets/images/log-catches.png",
+    "url": "https://static.wixstatic.com/media/c289f7_b689c179d0be4ffea3849db719a0b758~mv2.png"
+  },
+  {
+    "file": "assets/images/moon-sun-weather.png",
+    "url": "https://static.wixstatic.com/media/c289f7_aad7d586bfa8444782bda3d9060bd723~mv2.png"
+  },
+  {
+    "file": "assets/images/x-icon.png",
+    "url": "https://static.wixstatic.com/media/11062b_81cefb1bd2e2490d892a1cad5cc1cd8a~mv2.png"
+  },
+  {
+    "file": "assets/images/favicon.png",
+    "url": "https://static.wixstatic.com/media/c289f7_ad03a8568b8c4c6eadd6a70c30417c3c~mv2.png"
+  },
+  {
+    "file": "assets/fonts/poppins-light.woff2",
+    "url": "https://static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v5/h3r77AwDsldr1E_2g4qqGPk_vArhqVIZ0nv9q090hN8.woff2"
+  },
+  {
+    "file": "assets/fonts/poppins-semibold.woff2",
+    "url": "https://static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/poppins/v5/9VWMTeb5jtXkNoTv949Npfk_vArhqVIZ0nv9q090hN8.woff2"
+  },
+  {
+    "file": "assets/images/logo.svg",
+    "url": "https://www.mylurecollection.com/",
+    "note": "Original inline logo SVG, navy fill preserved."
+  },
+  {
+    "file": "assets/images/google-play.svg",
+    "url": "https://www.mylurecollection.com/",
+    "note": "Original inline Google Play badge SVG."
+  },
+  {
+    "file": "assets/images/about-divider.svg",
+    "url": "https://www.mylurecollection.com/about",
+    "note": "Original divider path extracted from the public CSS data SVG."
+  }
+]

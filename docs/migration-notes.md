@@ -32,7 +32,7 @@ Titles, available descriptions, favicon, Apple icon, Open Graph title/descriptio
 
 ## Visual matching and intentional differences
 
-Desktop retains the 144px sticky header, Poppins fonts, navy brand and download button, 80px outer gutters, 957px hero, 803px boat section, 726px cropped screenshot columns, 738px dark home contact block, and 172px white footer. The original four-layer curved boat divider and privacy title rule are recreated using local SVG/CSS.
+Desktop retains the 144px sticky header, Poppins fonts, navy brand and download button, 80px outer gutters, 957px hero, 803px boat section, 726px cropped screenshot columns and 172px white footer. Following the owner’s later design request, the contact section is now a more compact navy email panel. The original four-layer curved boat divider and privacy title rule are recreated using local SVG/CSS.
 
 Wide desktop placement matches the original fixed coordinates: at a 2192px viewport (2177px content width), the slogan starts at x=1315, the 314px Play badge at x=1441, and the QR code at x=1488. The 629px About panel follows the original centered-page offset, and the contact copy and form sit in the centers of the two equal page halves. At smaller desktop widths, placement is bounded inside the viewport to keep the content usable. At 375px and 768px, the source renderer maintains a 980px minimum scroll width; this migration adapts the layout. Phones have a keyboard-accessible menu, stacked sections, and full screenshot images. Tablets use two gallery columns. These responsive corrections mean the result is not pixel-identical to Wix's clipped narrow rendering.
 
@@ -54,8 +54,12 @@ Original page source, browser width reports, and screenshots are retained locall
 
 ## Screenshot correction
 
-The supplied original/recreated screenshots revealed wide-screen positioning errors in the first implementation. Rechecked the live source at 2192px and matched hero control coordinates and sizes, About panel coordinates and typography, contact column positions, form row spacing, logo scale, and the footer height. The corrected homepage and live source both measure 3831 CSS pixels high in this browser. The later email-contact update replaces the preview form and its notice. Reference captures are original-home-wide.png and corrected-home-wide.png under docs/reference/.
+The supplied original/recreated screenshots revealed wide-screen positioning errors in the first implementation. Rechecked the live source at 2192px and matched hero control coordinates and sizes, About panel coordinates and typography, contact column positions, form row spacing, logo scale, and the footer height. At that stage, the corrected homepage and live source both measured 3831 CSS pixels high in this browser. The later email-contact update replaces the preview form and its notice. Reference captures are original-home-wide.png and corrected-home-wide.png under docs/reference/.
 
 ## Email contact update
 
 The owner requested email delivery or the contact approach used on the GVK Software site. Inspected that live site and confirmed its published address and mailto link are info@gvksoftware.co.uk. Replaced the inactive form on the homepage and Contact page with that address, an email link, and “Opens your email app.” Updated the contact copy and search/sharing descriptions, removed the unused form styles and JavaScript, and updated the static checks. A configured email app or browser mail handler is needed to open the link; the address is visible and can also be copied into webmail. No real email or test message was sent. This needs no email service credentials or backend.
+
+## Contact design refinement
+
+At the owner’s request, redesigned only the contact component after replacing its form. Removed the oversized empty space, added a compact navy layout, a white email card with an envelope icon and a “Write an email” action, and clearer type hierarchy. The Contact page presents this panel within a neutral surround; the homepage uses a full-width navy section. Both stack on smaller screens. The entire card remains a normal mailto link to info@gvksoftware.co.uk, with visible keyboard focus, an accessible name, and reduced-motion support. No form service, message sending, or delivery confirmation was introduced.

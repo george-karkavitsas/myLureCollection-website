@@ -37,8 +37,9 @@ function features(base, separate) {
   return `<section class="features-section" id="features" aria-labelledby="features-title"><${separate ? 'h1' : 'h2'} class="visually-hidden" id="features-title">Features</${separate ? 'h1' : 'h2'}><div class="feature-grid">${images.map(([name,alt]) => `<img src="${base}assets/images/${name}.png" alt="${alt}" width="1284" height="2778" loading="lazy">`).join('')}</div></section>`;
 }
 function contact(separate) {
-  return `<section class="contact-section${separate ? ' contact-page' : ''}" id="contact" aria-labelledby="contact-title"><div class="contact-inner"><div class="contact-copy"><${separate ? 'h1' : 'h2'} id="contact-title">We’d love to hear from you!</${separate ? 'h1' : 'h2'}><p>Have questions or feedback?<br>Get in touch by email!</p></div>
-<div class="contact-details"><p>Email us at</p><a class="contact-email" href="mailto:${contactEmail}">${contactEmail}</a><p class="contact-email-note">Opens your email app.</p></div>
+  return `<section class="contact-section${separate ? ' contact-page' : ''}" id="contact" aria-labelledby="contact-title"><div class="contact-inner">
+<div class="contact-copy"><p class="contact-eyebrow">Get in touch</p><${separate ? 'h1' : 'h2'} id="contact-title">We’d love to hear from you!</${separate ? 'h1' : 'h2'}><p class="contact-intro">Have a question or some feedback?<br>Drop us a line.</p></div>
+<div class="contact-details"><a class="contact-email-card contact-email" href="mailto:${contactEmail}" aria-label="Email My Lure Collection at ${contactEmail}" aria-describedby="contact-email-note"><span class="contact-mail-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><span class="contact-card-label">Email us</span><span class="contact-email-address">${contactEmail}</span><span class="contact-card-action">Write an email<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a><p class="contact-email-note" id="contact-email-note">Opens your email app.</p></div>
 </div></section>`;
 }
 function footer(base) {

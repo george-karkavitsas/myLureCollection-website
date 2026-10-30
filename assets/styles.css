@@ -96,7 +96,7 @@ button {
 .brand {
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:19px;
   text-decoration:none;
   white-space:nowrap;
   color:var(--navy);
@@ -104,8 +104,9 @@ button {
   font-weight:600
 }
 .brand img {
-  width:45px;
-  height:46px
+  width:35px;
+  height:36px;
+  margin-left:7px
 }
 .site-header nav {
   display:flex;
@@ -143,15 +144,19 @@ button {
   object-fit:cover
 }
 .hero-content {
+  /* Wix keeps these controls at fixed desktop coordinates on wide screens. */
+  --copy-left:clamp(20px,calc(100% - 650px),1235px);
   position:absolute;
   inset:0
 }
 .hero h1 {
   position:absolute;
-  right:30px;
+  left:var(--copy-left);
+  width:610px;
+  right:auto;
   top:113px;
   font-size:50px;
-  line-height:1.5;
+  line-height:normal;
   max-width:calc(100% - 40px)
 }
 .hero h1 span {
@@ -159,17 +164,20 @@ button {
   background:var(--ink);
   box-decoration-break:clone;
   -webkit-box-decoration-break:clone;
-  padding:0 8px
+  padding:0 10.9px
 }
 .play-badge {
   position:absolute;
-  right:100px;
-  top:330px;
-  width:180px
+  left:calc(var(--copy-left) + 126px);
+  top:399px;
+  width:314px
+}
+.play-badge img {
+  width:100%
 }
 .app-icon {
   position:absolute;
-  right:100px;
+  left:calc(var(--copy-left) + 173px);
   top:512px;
   width:219px
 }
@@ -195,29 +203,31 @@ button {
   z-index:1;
   background:var(--paper);
   text-align:center;
-  width:600px;
+  width:629px;
   max-width:calc(100% - 80px);
-  padding:65px 40px;
-  margin-left:0
+  padding:64px 31px 65px;
+  align-self:flex-start;
+  margin-top:148px;
+  margin-left:max(0px,calc(50% - 804px))
 }
 .about-panel h1,.about-panel h2 {
   font-size:56px;
   line-height:1.5;
   white-space:nowrap;
-  letter-spacing:-1.8px
+  letter-spacing:normal
 }
 .about-panel p {
   font-size:16px;
   line-height:1.8;
   max-width:449px;
-  margin:35px auto 42px
+  margin:40px auto
 }
 .download-button {
   display:inline-flex;
   align-items:center;
   justify-content:center;
   min-width:142px;
-  min-height:41px;
+  min-height:40px;
   background:#003b6c;
   color:white;
   text-decoration:none;
@@ -249,13 +259,22 @@ button {
   padding:122px 0 110px
 }
 .contact-inner {
-  width:calc(100% - 246px);
-  max-width:1180px;
+  width:100%;
   margin:auto;
   display:grid;
-  grid-template-columns:460px 435px;
-  justify-content:space-between;
-  gap:50px
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.contact-copy {
+  width:460px;
+  max-width:100%;
+  justify-self:center;
+  transform:translateX(-3px)
+}
+.contact-inner form {
+  width:434px;
+  max-width:100%;
+  justify-self:center;
+  padding-top:3px
 }
 .contact-copy h1,.contact-copy h2 {
   font-size:40px;
@@ -270,7 +289,7 @@ button {
 .form-grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:20px 12px
+  gap:21.57143px 12px
 }
 .field {
   min-width:0;
@@ -279,7 +298,7 @@ button {
 }
 .field label {
   font-size:15px;
-  line-height:1.5
+  line-height:21px
 }
 .field input,.field textarea {
   display:block;
@@ -290,10 +309,10 @@ button {
   color:inherit;
   width:100%;
   padding:10px 0;
-  min-height:47px
+  min-height:45px
 }
 .field textarea {
-  height:125px;
+  height:99.42857px;
   resize:vertical
 }
 .full {
@@ -306,7 +325,7 @@ button {
   border:0;
   background:var(--paper);
   color:var(--ink);
-  min-height:40px;
+  min-height:38.8px;
   font-size:14px
 }
 .submit-button:disabled {
@@ -335,12 +354,12 @@ button {
   color:white
 }
 .site-footer {
-  min-height:156px;
+  min-height:172px;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:120px;
-  padding:40px 24px;
+  padding:63px 24px 86px;
   background:#fff;
   font-size:15px
 }
@@ -349,7 +368,7 @@ button {
 }
 .site-footer p {
   max-width:729px;
-  line-height:1.7
+  line-height:normal
 }
 .privacy-policy {
   max-width:594px;
@@ -389,21 +408,6 @@ button {
 .privacy-policy a {
   text-decoration:underline
 }
-@media(min-width:1600px) {
-  .hero h1 {
-    right:0
-  }
-  .hero-content {
-    right:-40px
-  }
-  .about-panel {
-    margin-left:7%;
-    width:620px
-  }
-  .contact-inner {
-    max-width:1180px
-  }
-}
 @media(max-width:1199px) {
   :root {
     --gutter:40px
@@ -414,12 +418,14 @@ button {
   }
   .hero h1 {
     font-size:42px;
+    left:auto;
     right:20px
   }
   .hero-inner {
     height:820px
   }
   .hero .play-badge,.hero .app-icon {
+    left:auto;
     right:60px
   }
   .about-panel {
@@ -438,6 +444,12 @@ button {
     width:calc(100% - 100px);
     grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     gap:70px
+  }
+  .contact-copy {
+    transform:none
+  }
+  .contact-inner form {
+    width:100%
   }
   .contact-copy h1,.contact-copy h2 {
     font-size:36px
@@ -537,7 +549,8 @@ button {
   }
   .brand img {
     width:35px;
-    height:36px
+    height:36px;
+    margin-left:0
   }
   .menu-toggle:not([hidden]) {
     display:block
@@ -580,6 +593,7 @@ button {
   .hero h1 {
     left:20px;
     right:auto;
+    width:auto;
     top:70px;
     font-size:27px;
     line-height:1.8;
@@ -640,8 +654,12 @@ button {
   .contact-inner {
     width:100%;
     display:grid;
-    grid-template-columns:1fr;
+    grid-template-columns:minmax(0,1fr);
     gap:40px
+  }
+  .contact-copy {
+    width:100%;
+    min-width:0
   }
   .contact-copy h1,.contact-copy h2 {
     font-size:30px;
@@ -686,6 +704,9 @@ button {
   line-height:1.5;
   margin-top:6px;
   color:inherit
+}
+.field-error:empty {
+  display:none
 }
 .field [aria-invalid=true] {
   border-bottom:2px solid currentColor

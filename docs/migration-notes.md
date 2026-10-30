@@ -32,9 +32,9 @@ Titles, available descriptions, favicon, Apple icon, Open Graph title/descriptio
 
 ## Visual matching and intentional differences
 
-Desktop retains the 144px sticky header, Poppins fonts, navy brand and download button, 80px outer gutters, 957px hero, 803px boat section, 726px cropped screenshot columns, neutral backgrounds, dark home contact block, and white footer. The original four-layer curved boat divider and privacy title rule are recreated using local SVG/CSS.
+Desktop retains the 144px sticky header, Poppins fonts, navy brand and download button, 80px outer gutters, 957px hero, 803px boat section, 726px cropped screenshot columns, 738px dark home contact block, and 172px white footer. The original four-layer curved boat divider and privacy title rule are recreated using local SVG/CSS.
 
-The observed Wix desktop layout puts most of the hero slogan, Play badge and QR code beyond the right viewport edge, and clips the left of the About panel. Those elements have been placed inside the viewport so the full content and download controls remain usable. At 375px and 768px, the source renderer maintains a 980px minimum scroll width; this migration adapts the layout. Phones have a keyboard-accessible menu, stacked sections, and full screenshot images. Tablets use two gallery columns. These responsive corrections mean the result is not pixel-identical to Wix's clipped narrow rendering.
+Wide desktop placement matches the original fixed coordinates: at a 2192px viewport (2177px content width), the slogan starts at x=1315, the 314px Play badge at x=1441, and the QR code at x=1488. The 629px About panel follows the original centered-page offset, and the contact copy and form sit in the centers of the two equal page halves. At smaller desktop widths, placement is bounded inside the viewport to keep the content usable. At 375px and 768px, the source renderer maintains a 980px minimum scroll width; this migration adapts the layout. Phones have a keyboard-accessible menu, stacked sections, and full screenshot images. Tablets use two gallery columns. These responsive corrections mean the result is not pixel-identical to Wix's clipped narrow rendering.
 
 The Wix form engine is replaced with a disabled preview and an explicit delivery notice. Browser-native field constraints and accessible inline feedback are provided. There are no Wix entrance effects, analytics, tracking scripts, APIs, or external image/font requests. The full original policy wording is unchanged; headings are now semantic h2 elements. Full-resolution source photographs are retained; runtime photos use high-quality 2560px local JPEG derivatives to reduce transfer size.
 
@@ -51,3 +51,7 @@ The Wix form engine is replaced with a disabled preview and an explicit delivery
 - No public deployment or live-domain change was performed. Hosted redirects, real form delivery, real mobile devices, and non-Chromium engines remain unverified.
 
 Original page source, browser width reports, and screenshots are retained locally under `docs/reference/` (gitignored). Generated Wix HTML is only inspection material and is not used by the independent pages. All required runtime assets are committed under assets/.
+
+## Screenshot correction
+
+The supplied original/recreated screenshots revealed wide-screen positioning errors in the first implementation. Rechecked the live source at 2192px and matched hero control coordinates and sizes, About panel coordinates and typography, contact column positions, form row spacing, logo scale, and the footer height. The corrected homepage and live source both measure 3831 CSS pixels high in this browser. The visible unavailable-form notice remains an intentional preview difference. Reference captures are original-home-wide.png and corrected-home-wide.png under docs/reference/.

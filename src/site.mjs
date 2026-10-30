@@ -3,9 +3,10 @@ export const pages = [
   { slug: '', label: 'Home', title: 'My Lure Collection - Fishing app for anglers', description: 'Fishing is not a hobby... It’s a passion!\nWelcome to My Lure Collection, the ultimate fishing app for anglers. Track catches, organize lures, and log your fishing stats to enhance your fishing journey. Perfect for seasoned anglers and beginners alike!' },
   { slug: 'about', label: 'About', title: 'About | My Lure Collection', description: "Discover My Lure Collection - Fishing, the ultimate fishing app for anglers. Log catches, organize lures, track fishing stats, add notes, and check the moon phases. Perfect for enhancing your fishing experience, whether you're a pro or just starting out!" },
   { slug: 'features', label: 'Features', title: 'Features | My Lure Collection', description: 'Explore the powerful features of My Lure Collection - Fishing. Organize your gear, log catches, analyze fishing stats, save spots, track weather and moon phases, add notes, create shopping lists, view visual collections, and use the unit converter for ultimate fishing success!' },
-  { slug: 'contact', label: 'Contact', title: 'Contact | My Lure Collection', description: "Get in touch with My Lure Collection - Fishing. Have questions, feedback, or need support? Contact us using the form to connect with our team. We're here to help enhance your fishing experience!" },
+  { slug: 'contact', label: 'Contact', title: 'Contact | My Lure Collection', description: "Get in touch with My Lure Collection - Fishing. Have questions, feedback, or need support? Contact us by email to connect with our team. We're here to help enhance your fishing experience!" },
   { slug: 'privacy-policy', label: 'Privacy Policy', title: 'Privacy Policy | My Lure Collection' }
 ];
+const contactEmail = 'info@gvksoftware.co.uk';
 const play = 'https://play.google.com/store/apps/details?id=co.uk.gvksoftware.mylurecollection';
 const escape = text => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
 function header(page, base) {
@@ -36,15 +37,8 @@ function features(base, separate) {
   return `<section class="features-section" id="features" aria-labelledby="features-title"><${separate ? 'h1' : 'h2'} class="visually-hidden" id="features-title">Features</${separate ? 'h1' : 'h2'}><div class="feature-grid">${images.map(([name,alt]) => `<img src="${base}assets/images/${name}.png" alt="${alt}" width="1284" height="2778" loading="lazy">`).join('')}</div></section>`;
 }
 function contact(separate) {
-  return `<section class="contact-section${separate ? ' contact-page' : ''}" id="contact" aria-labelledby="contact-title"><div class="contact-inner"><div class="contact-copy"><${separate ? 'h1' : 'h2'} id="contact-title">We’d love to hear from you!</${separate ? 'h1' : 'h2'}><p>Have questions or feedback?<br>Get in touch by filling out the form!</p></div>
-<form aria-label="Contact" aria-describedby="form-notice" data-contact-form><div class="form-grid">
-<div class="field"><label for="first-name">First Name <span aria-hidden="true">*</span></label><input id="first-name" name="first-name" autocomplete="given-name" required></div>
-<div class="field"><label for="last-name">Last Name</label><input id="last-name" name="last-name" autocomplete="family-name"></div>
-<div class="field email-field"><label for="email">Email <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" required></div>
-<div class="field full"><label for="subject">Subject</label><input id="subject" name="subject"></div>
-<div class="field full"><label for="message">Message</label><textarea id="message" name="message" rows="4"></textarea></div>
-<button class="submit-button full" type="submit" disabled>Submit</button>
-<p class="form-notice full" id="form-notice" role="status">Submission is unavailable in this preview. A message delivery service has not been configured. Nothing entered here is sent or saved.</p></div></form>
+  return `<section class="contact-section${separate ? ' contact-page' : ''}" id="contact" aria-labelledby="contact-title"><div class="contact-inner"><div class="contact-copy"><${separate ? 'h1' : 'h2'} id="contact-title">We’d love to hear from you!</${separate ? 'h1' : 'h2'}><p>Have questions or feedback?<br>Get in touch by email!</p></div>
+<div class="contact-details"><p>Email us at</p><a class="contact-email" href="mailto:${contactEmail}">${contactEmail}</a><p class="contact-email-note">Opens your email app.</p></div>
 </div></section>`;
 }
 function footer(base) {

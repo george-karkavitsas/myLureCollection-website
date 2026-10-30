@@ -14,12 +14,11 @@ for (const page of ['', 'about', 'features', 'contact', 'privacy-policy']) {
     await access(path.resolve(path.dirname(filename), match[1].split('#')[0]));
   }
   if (page === '' || page === 'contact') {
-    assert.match(html, /name="first-name"[^>]*required/);
-    assert.match(html, /name="email"[^>]*type="email"[^>]*required/);
-    assert.match(html, /type="submit" disabled/);
+    assert.match(html, /href="mailto:info@gvksoftware\.co\.uk"/);
+    assert.doesNotMatch(html, /<form\b|type="submit"|Submission is unavailable/i);
   }
 }
 const css = await readFile(path.join(root, 'assets/styles.css'), 'utf8');
 assert.doesNotMatch(css, /https?:/);
 for (const match of css.matchAll(/url\('([^']+)'\)/g)) await access(path.join(root, 'assets', match[1]));
-console.log('Passed: 5 pages, local links/assets, headings, required fields, unavailable form, and no Wix runtime dependencies.');
+console.log('Passed: 5 pages, local links/assets, headings, email contact, and no Wix runtime dependencies.');

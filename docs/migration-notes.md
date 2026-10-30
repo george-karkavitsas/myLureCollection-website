@@ -63,3 +63,23 @@ The owner requested email delivery or the contact approach used on the GVK Softw
 ## Contact design refinement
 
 At the owner’s request, redesigned only the contact component after replacing its form. Removed the oversized empty space, added a compact navy layout, a white email card with an envelope icon and a “Write an email” action, and clearer type hierarchy. The Contact page presents this panel within a neutral surround; the homepage uses a full-width navy section. Both stack on smaller screens. The entire card remains a normal mailto link to info@gvksoftware.co.uk, with visible keyboard focus, an accessible name, and reduced-motion support. No form service, message sending, or delivery confirmation was introduced.
+
+## GitHub Pages activation — 30 October 2026
+
+After the owner explicitly requested the live switch, enabled GitHub Pages from `main` and `/` (repository root), and set the custom domain to `www.mylurecollection.com`. GitHub created the committed `CNAME` file. Preserve that file when rebuilding the pages.
+
+Changed only the website DNS records in the owner's Wix domain account:
+
+| Type | Host | Value |
+| --- | --- | --- |
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | george-karkavitsas.github.io |
+
+Both Wix nameservers remain in place. Domain registration, subscriptions, the Wix site, and non-website DNS records were not changed. The previous three Wix A records and Wix `www` alias are saved in the local, ignored `docs/reference/dns-before-cutover.txt` for rollback.
+
+Verified the new records directly against the authoritative nameserver and confirmed the live HTTP homepage returns 200 from GitHub.com with the new email contact component. All five pages passed the static checks. DNS caches and GitHub's HTTPS certificate issuance can take time after the change. At the initial activation check the custom-domain certificate was still pending; HTTPS must be verified and enforcement enabled once GitHub issues it. Do not bypass browser certificate warnings.
+
+Future updates: edit `src/site.mjs`, `src/privacy-policy.html`, or `assets/`; run `node scripts/build.mjs` and `node scripts/check.mjs`; then commit and push `main`, including the generated HTML pages. GitHub Pages republishes automatically. Run `node scripts/serve.mjs` for the local preview at http://127.0.0.1:4173/.

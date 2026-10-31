@@ -1,0 +1,43 @@
+name: Diagnose Pages DNS and HTTPS
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Inspect DNS from GitHub infrastructure
+        shell: bash
+        run: |
+          date -u
+          cat /etc/resolv.conf
+          for host in mylurecollection.com www.mylurecollection.com; do
+            for type in A AAAA CNAME CAA; do
+              echo "DNS: $host $type (runner resolver)"
+              dig +time=4 +tries=1 +noall +answer "$host" "$type"
+              echo "DNS: $host $type (Google resolver)"
+              dig @8.8.8.8 +time=4 +tries=1 +noall +answer "$host" "$type"
+            done
+          done
+      - name: Inspect HTTP routing
+        shell: bash
+        run: |
+          status=0
+          for host in mylurecollection.com www.mylurecollection.com; do
+            curl --fail --show-error --head --connect-timeout 5 --max-time 15 "http://$host/" || status=1
+          done
+          exit "$status"
+      - name: Verify HTTPS certificates for both addresses
+        if: always()
+        shell: bash
+        run: |
+          status=0
+          for host in mylurecollection.com www.mylurecollection.com; do
+            echo "Verified HTTPS request: $host"
+            curl --fail --show-error --verbose --head --location --connect-timeout 5 --max-time 20 "https://$host/" || status=1
+          done
+          exit "$status"

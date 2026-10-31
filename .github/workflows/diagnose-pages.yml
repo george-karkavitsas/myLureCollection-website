@@ -23,6 +23,12 @@ jobs:
               dig @8.8.8.8 +time=4 +tries=1 +noall +answer "$host" "$type"
             done
           done
+      - name: Compare the published GitHub Pages health checker
+        if: always()
+        shell: bash
+        run: |
+          gem install github-pages-health-check --user-install --no-document
+          ruby -rgithub-pages-health-check -e 'puts GitHubPages::HealthCheck::Site.new("www.mylurecollection.com").to_json'
       - name: Inspect HTTP routing
         shell: bash
         run: |
@@ -41,3 +47,4 @@ jobs:
             curl --fail --show-error --verbose --head --location --connect-timeout 5 --max-time 20 "https://$host/" || status=1
           done
           exit "$status"
+

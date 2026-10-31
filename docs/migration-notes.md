@@ -4,17 +4,19 @@ Inspected 30 October 2026. Workspace: G:\GVKSoftware\AndroidApplications\My Lure
 
 ## Source structure and link destinations
 
-All main navigation items are separate pages, not section anchors:
+Main navigation uses sections within one continuous page, as requested by the owner. Home, About, Features, and Contact scroll to anchors; visitors can continue scrolling through every other section. Privacy Policy remains a separate page.
 
-| Label | Original destination | Independent destination |
+| Label | Current navigation destination | Previously published path |
 | --- | --- | --- |
-| Logo / brand / Home | https://www.mylurecollection.com/ | ./ |
-| About | https://www.mylurecollection.com/about | about/ |
-| Features | https://www.mylurecollection.com/features | features/ |
-| Contact | https://www.mylurecollection.com/contact | contact/ |
-| Privacy Policy | https://www.mylurecollection.com/privacy-policy | privacy-policy/ |
+| Logo / brand / Home | #home | / |
+| About | #about | /about/ forwards to ../#about |
+| Features | #features | /features/ forwards to ../#features |
+| Contact | #contact | /contact/ forwards to ../#contact |
+| Privacy Policy | privacy-policy/ | /privacy-policy preserved |
 
-The homepage contains, in order: rocky-coast hero with the original slogan, Play badge and QR code; Passionate Anglers panel over fishing boats; five screenshot columns; dark contact section; white copyright/social footer. The About page has slightly different introductory text, which is preserved. Contact's separate page uses a light background. Features is the standalone five-image gallery. Privacy Policy is a separate text page.
+On Privacy Policy, the four section links return to the main page at the selected anchor. Older section paths use a small static redirect with a normal link fallback, so bookmarks remain useful on GitHub Pages and under repository subpaths. Edit the shared main-page sections in `src/site.mjs`; `node scripts/build.mjs` regenerates the website and compatibility forwards.
+
+The homepage contains, in order: rocky-coast hero with the original slogan, Play badge and QR code; Passionate Anglers panel over fishing boats; five screenshot columns; dark contact section; white copyright/social footer. About, the five-image Features gallery, and Contact remain together on the homepage. Privacy Policy is a separate text page.
 
 External destinations preserved exactly:
 
@@ -83,3 +85,18 @@ Both Wix nameservers remain in place. Domain registration, subscriptions, the Wi
 Verified the new records directly against the authoritative nameserver and confirmed the live HTTP homepage returns 200 from GitHub.com with the new email contact component. All five pages passed the static checks. DNS caches and GitHub's HTTPS certificate issuance can take time after the change. At the initial activation check the custom-domain certificate was still pending; HTTPS must be verified and enforcement enabled once GitHub issues it. Do not bypass browser certificate warnings.
 
 Future updates: edit `src/site.mjs`, `src/privacy-policy.html`, or `assets/`; run `node scripts/build.mjs` and `node scripts/check.mjs`; then commit and push `main`, including the generated HTML pages. GitHub Pages republishes automatically. Run `node scripts/serve.mjs` for the local preview at http://127.0.0.1:4173/.
+
+## HTTPS diagnostics
+
+The manual Actions workflow `.github/workflows/diagnose-pages.yml` can be run from Actions → Diagnose Pages DNS and HTTPS → Run workflow. It checks public DNS (including IPv6 and CAA), GitHub's published health checker, HTTP routing, and certificate-verified HTTPS for both the root and `www` hostnames. It has no repository token permissions and sends no messages. Its RubyGems dependency runs only on the temporary diagnostic runner; the website itself remains plain static files with no runtime packages.
+
+During the initial HTTPS cutover, the public and authoritative DNS records matched GitHub's required configuration. An independent runner in westus3 confirmed the root redirected to `www` and the homepage was served by GitHub. GitHub's published `github-pages-health-check` 1.19.2 reported the primary domain valid, served by Pages, not proxied, and eligible for HTTPS. However, the Pages API health result still identified the former Cloudflare destination. Secure connections to both hostnames failed because the edge servers presented `CN=*.github.io` instead of a certificate for this domain.
+
+Evidence: https://github.com/george-karkavitsas/myLureCollection-website/actions/runs/41151251906. The failed HTTPS diagnostic is an intentional check exposing the missing certificate, separate from the successful site build. A provisioning restart using GitHub's documented custom-domain remove-and-readd procedure was performed at 00:28 UTC on 31 October. DNS was not changed again. Local records and a draft escalation report are under the ignored `docs/reference/` directory.
+
+
+## One-page navigation correction
+
+Replaced the section-only navigation pages with native #home, #about, #features, and #contact links. The homepage retains all four sections in their original order. The sticky-header scroll offsets remain 144px on desktop/tablet and 100px on phones; reduced-motion visitors get immediate scrolling. The mobile menu closes after selection and the active section link follows the URL hash. Privacy Policy is a separate page with return links to the homepage sections. Previously shared /about/, /features/, and /contact/ paths forward to the corresponding main-page anchors instead of isolating that content.
+
+Verified the navigation correction locally in Chromium at 375px, 768px, and 1440px. All section links keep all four sections in the same document; manual scrolling continues beyond About. The About anchor aligns below the sticky header (100px on phones, 144px on desktop). The mobile menu closes after selection. Privacy navigation returns to the requested homepage section, and all three old section URLs plus a repository-subpath URL redirect correctly. No horizontal overflow or browser console warnings/errors were observed. The build and section-navigation regression checks pass.

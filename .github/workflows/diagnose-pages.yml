@@ -27,8 +27,8 @@ jobs:
         if: always()
         shell: bash
         run: |
-          gem install github-pages-health-check --user-install --no-document
-          ruby -rgithub-pages-health-check -e 'puts GitHubPages::HealthCheck::Site.new("www.mylurecollection.com").to_json'
+          gem install github-pages-health-check --version 1.19.2 --user-install --no-document
+          ruby -rgithub-pages-health-check -e 'ARGV.each { |host| puts GitHubPages::HealthCheck::Site.new(host).to_json }' mylurecollection.com www.mylurecollection.com
       - name: Inspect HTTP routing
         shell: bash
         run: |
@@ -47,4 +47,3 @@ jobs:
             curl --fail --show-error --verbose --head --location --connect-timeout 5 --max-time 20 "https://$host/" || status=1
           done
           exit "$status"
-
